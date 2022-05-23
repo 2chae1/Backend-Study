@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome Page</title>
+<title>글쓰기 페이지</title>
 </head>
 <body>
 	<% 
@@ -12,6 +12,7 @@
 		if(session.getAttribute("userID")!=null) userID = (String) session.getAttribute("userID");
 	%>
 	<nav>
+		<a href="index.jsp">메인</a>
 		<a href="noticeBoard.jsp">게시판</a>
 	<%
 		if(userID==null) {
@@ -25,12 +26,18 @@
 	%>
 		<div>
 			<button type="button" onclick="location.href='logout.jsp';">로그아웃</button>
-			<button type="button" onclick="location.href='signup.jsp';">회원가입</button>
-			<a href="write.jsp">글쓰기</a>
 		</div>
 	<%
 		}
 	%>
 	</nav>
+	
+	<div>
+		<form method="post" action="writeAction.jsp">
+			<input type="text" placeholder="제목" name="BTitle" maxlength="20">
+			<input type="text" placeholder="내용" name="BContent" maxlength="20">
+			<input type="submit" value="글쓰기">
+		</form>
+	</div>
 </body>
 </html>

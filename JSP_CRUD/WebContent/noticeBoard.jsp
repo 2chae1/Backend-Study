@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="board.nbDAO"%>
+<%@ page import="board.nb"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome Page</title>
+<title>게시판 페이지</title>
 </head>
 <body>
 	<% 
@@ -12,7 +15,7 @@
 		if(session.getAttribute("userID")!=null) userID = (String) session.getAttribute("userID");
 	%>
 	<nav>
-		<a href="noticeBoard.jsp">게시판</a>
+		<a href="index.jsp">메인</a>
 	<%
 		if(userID==null) {
 	%>
@@ -32,5 +35,34 @@
 		}
 	%>
 	</nav>
+	
+	<div>
+		<table style="text-align: center; border: 1px solid">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>내용</th>
+					<th>작성자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					nbDAO nbdao = new nbDAO();
+					ArrayList<nb> list = nbdao.getList();
+					for (int i=0; i<list.size(); i++) {
+				%>
+				<tr>
+					<td><%= list.get(i).getBID() %></td>
+					<td><%= list.get(i).getBTitle() %></td>
+					<td><%= list.get(i).getBContent() %></td>
+					<td><%= list.get(i).getUserID() %></td>
+				<tr>
+				<%
+					}
+				%>
+			</tbody> 
+		</table>
+	</div>
 </body>
 </html>
