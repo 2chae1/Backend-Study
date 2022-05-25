@@ -54,7 +54,7 @@
 				%>
 				<tr>
 					<td><%= list.get(i).getBID() %></td>
-					<td><%= list.get(i).getBTitle() %></td>
+					<td><a href="read.jsp?BID=<%= list.get(i).getBID() %>"><%= list.get(i).getBTitle() %></a></td>
 					<td><%= list.get(i).getBContent() %></td>
 					<td><%= list.get(i).getUserID() %></td>
 				<tr>

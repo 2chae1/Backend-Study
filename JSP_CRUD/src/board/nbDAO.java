@@ -61,7 +61,7 @@ public class nbDAO {
 		
 		String SQL = "SELECT * FROM BOARD WHERE BAvailable = 1 ORDER BY BID DESC";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -78,4 +78,31 @@ public class nbDAO {
 		}
 		return list;
 	}
+	
+	public nb getOne(int bid){
+		
+		String SQL = "SELECT * FROM BOARD WHERE BID=?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,bid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				nb _nb = new nb();
+				
+				_nb.setBID(rs.getInt(1));
+				_nb.setBTitle(rs.getString(2));
+				_nb.setUserID(rs.getString(3));
+				_nb.setBContent(rs.getString(4));
+				_nb.setBAvailable(rs.getInt(5));
+				
+				return _nb;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }
