@@ -35,7 +35,7 @@
 	<div>
 		<form method="post" action="writeAction.jsp">
 			<input type="text" placeholder="제목" name="BTitle" maxlength="20">
-			<input type="text" placeholder="내용" name="BContent" maxlength="20">
+			<input type="text" placeholder="내용" name="BContent" maxlength="50">
 			<input type="submit" value="글쓰기">
 		</form>
 	</div>

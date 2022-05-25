@@ -105,4 +105,29 @@ public class nbDAO {
 		return null;
 	}
 	
+	public int update(int BID, String BTitle, String BContent) {
+		String SQL = "UPDATE BOARD SET BTitle = ?, BContent = ? WHERE BID = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(3,BID);
+			pstmt.setString(1,BTitle);
+			pstmt.setString(2,BContent);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
+	public int delete(int BID) {
+		String SQL = "UPDATE BOARD SET BAvailable=0 WHERE BID = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,BID);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
 }

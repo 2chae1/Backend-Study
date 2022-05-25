@@ -20,11 +20,10 @@
 		if(request.getParameter("BID") != null) {
 			BID = Integer.parseInt(request.getParameter("BID"));
 		}
-		if(BID == 0) {
+		if(BID==0) { //왜 해주는 걸까?
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않는 글입니다.')");
-			script.println("location.href=read.jsp");
 			script.println("history.back() </script>");		
 		}
 		nb _nb = new nbDAO().getOne(BID);
@@ -53,8 +52,8 @@
 	</div>
 	<div>
 		<a href="noticeBoard.jsp">목록</a>
-		<!-- <a href="update.jsp?BID=<%=BID%>">수정</a> 
-		<a href="delete.jsp?BID=<%=BID%>">삭제</a> -->
+		<a href="update.jsp?BID=<%=BID%>">수정</a> 
+		<a href="deleteAction.jsp?BID=<%=BID%>">삭제</a>
 	</div>
 </body>
 </html>
